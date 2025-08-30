@@ -1,0 +1,2 @@
+id_venta,id_cliente,producto,cantidad,precio,total
+1,1,2,3,2500.0,7500.0
