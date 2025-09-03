@@ -54,7 +54,7 @@ def eliminar_cliente():
 
 
 def registrar_producto():
-    id_cliente = input("Ingrese el ID del cliente: ")
+    id_nuevo = input("Ingrese el ID del producto: ")
     producto = input("Producto: ")
     precio = input("Precio: ")
     cantidad = input("Cantidad: ")
@@ -62,25 +62,23 @@ def registrar_producto():
     try:
         with open("pedidos.csv", "r", encoding="utf-8") as f:
             next(f)
-            ids = [int(linea.split(",")[0]) for linea in f]
-            nuevo_id = max(ids) + 1 if ids else 1
     except FileNotFoundError:
-        nuevo_id = 1
+        id_nuevo = 1
 
     with open("pedidos.csv", "a", encoding="utf-8") as f:
-        f.write(f"{nuevo_id},{id_cliente},{producto},{precio},{cantidad},1\n")
+        f.write(f"{id_nuevo},{producto},{precio},{cantidad},1\n")
     print(" Pedido registrado.")
 
 
 def listar_producto_cliente():
-    id_cliente = input("Ingrese el ID del cliente: ")
+    id_pedido = input("Ingrese el ID del cliente: ")
     try:
         with open("pedidos.csv", "r", encoding="utf-8") as f:
             next(f)
-            print(f"\n Pedidos del cliente {id_cliente}:")
+            print(f"\n Pedidos del cliente {id_pedido}:")
             for linea in f:
-                id_pedido, cliente, producto, precio, cantidad, activo = linea.strip().split(",")
-                if cliente == id_cliente and activo == "1":
+                id_pedido, producto, precio, cantidad, activo = linea.strip().split(",")
+                if producto == id_pedido and activo == "1":
                     print(f"Pedido {id_pedido}: {producto} - {cantidad} x {precio}")
     except FileNotFoundError:
         print(" No hay pedidos registrados.")
@@ -145,9 +143,9 @@ def menu():
         elif opcion == "3":
             eliminar_cliente()
         elif opcion == "4":
-            registrar_pedido()
+            registrar_producto()
         elif opcion == "5":
-            listar_pedidos_cliente()
+            listar_producto_cliente()
         elif opcion == "6":
             guardar_venta()
         elif opcion == "7":
