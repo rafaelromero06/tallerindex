@@ -71,11 +71,11 @@ def registrar_producto():
 
 
 def listar_producto_cliente():
-    id_pedido = input("Ingrese el ID del cliente: ")
+    id_pedido = input("Ingrese el ID del pedido: ")
     try:
         with open("pedidos.csv", "r", encoding="utf-8") as f:
             next(f)
-            print(f"\n Pedidos del cliente {id_pedido}:")
+            print(f"\n Pedidos {id_pedido}:")
             for linea in f:
                 id_pedido, producto, precio, cantidad, activo = linea.strip().split(",")
                 if producto == id_pedido and activo == "1":
