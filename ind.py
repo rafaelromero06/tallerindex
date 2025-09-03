@@ -1,5 +1,6 @@
 
 
+
 def registrar_cliente():
     nombre = input("Nombre: ")
     apellido = input("Apellido: ")
@@ -53,28 +54,28 @@ def eliminar_cliente():
 
 
 def registrar_pedido():
-    id_cliente = input("Ingrese el ID del producto: ")
+    id_cliente = input("Ingrese el ID del cliente: ")
     producto = input("Producto: ")
     precio = input("Precio: ")
     cantidad = input("Cantidad: ")
 
     try:
-        with open("productos.csv", "r", encoding="utf-8") as f:
+        with open("pedidos.csv", "r", encoding="utf-8") as f:
             next(f)
             ids = [int(linea.split(",")[0]) for linea in f]
-            id_producto = max(ids) + 1 if ids else 1
+            nuevo_id = max(ids) + 1 if ids else 1
     except FileNotFoundError:
-        id_producto = 1
+        nuevo_id = 1
 
-    with open("productos.csv", "a", encoding="utf-8") as f:
-        f.write(f"{id_producto},{producto},{precio},{cantidad},1\n")
+    with open("pedidos.csv", "a", encoding="utf-8") as f:
+        f.write(f"{nuevo_id},{id_cliente},{producto},{precio},{cantidad},1\n")
     print(" Pedido registrado.")
 
 
 def listar_pedidos_cliente():
     id_cliente = input("Ingrese el ID del cliente: ")
     try:
-        with open("productos.csv", "r", encoding="utf-8") as f:
+        with open("pedidos.csv", "r", encoding="utf-8") as f:
             next(f)
             print(f"\n Pedidos del cliente {id_cliente}:")
             for linea in f:
