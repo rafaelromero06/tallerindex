@@ -53,7 +53,7 @@ def eliminar_cliente():
 
 
 
-def registrar_pedido():
+def registrar_producto():
     id_cliente = input("Ingrese el ID del cliente: ")
     producto = input("Producto: ")
     precio = input("Precio: ")
@@ -72,7 +72,7 @@ def registrar_pedido():
     print(" Pedido registrado.")
 
 
-def listar_pedidos_cliente():
+def listar_producto_cliente():
     id_cliente = input("Ingrese el ID del cliente: ")
     try:
         with open("pedidos.csv", "r", encoding="utf-8") as f:
