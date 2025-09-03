@@ -76,7 +76,7 @@ def listar_pedidos_cliente():
     try:
         with open("pedidos.csv", "r", encoding="utf-8") as f:
             next(f)
-            print(f"\n📋 Pedidos del cliente {id_cliente}:")
+            print(f"\n Pedidos del cliente {id_cliente}:")
             for linea in f:
                 id_pedido, cliente, producto, precio, cantidad, activo = linea.strip().split(",")
                 if cliente == id_cliente and activo == "1":
